@@ -7,6 +7,8 @@ function AuthContextProvider({ children }) {
   const Authorization = localStorage.getItem("token");
   const [user, setUser] = useState({});
   async function checkUser() {
+    if (!Authorization) return navigate("/login");
+
     try {
       const { data } = await axiosConfig.get("/users/checkUser", {
         headers: {
