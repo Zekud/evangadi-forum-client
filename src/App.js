@@ -13,6 +13,7 @@ function ProtectedRoute({ children }) {
 function App() {
   return (
     <Routes>
+      <Route path="/login" element={<Login />} />
       <Route
         path="/"
         element={
@@ -21,7 +22,6 @@ function App() {
           </ProtectedRoute>
         }
       />
-      <Route path="/login" element={<Login />} />
       <Route
         path="/question/:id"
         element={
