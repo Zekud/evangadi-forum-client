@@ -98,7 +98,7 @@ function Login() {
     <>
       <NavBar />
       <div className="w-full p-10 h-full flex-col items-center gap-10 md:flex md:flex-row md:items-center  ">
-        <div className="form w-full h-[500px] flex flex-col gap-4 border-[1px] m-2 shadow-[0_0_5px_0] rounded-lg mx-auto p-10 items-center">
+        <div className="form w-full h-auto  md:h-[500px] flex flex-col gap-4 border-[1px] m-2 shadow-[0_0_5px_0] rounded-lg mx-auto p-10 items-center">
           {showLogin ? (
             <>
               <h1 className="text-4xl text-tertiary font-bold my-2">
