@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import arrow from "../assets/arrow_black.svg";
 import { useNavigate } from "react-router-dom";
 import { Snackbar } from "../ContextApi/SnackBarContext";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function AskQuestion() {
   const { user } = useContext(AuthContext);
@@ -13,12 +14,15 @@ function AskQuestion() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   async function handleSubmit(e) {
     e.preventDefault();
     if (!title || !description) {
       return;
     }
+
+    setLoading(true);
     const trimmedTags = tags
       .split(",")
       .map((tag) => tag.trim())
@@ -43,13 +47,14 @@ function AskQuestion() {
       setTitle("");
       setDescription("");
       setTags("");
-
+      setLoading(false);
       navigate("/");
       window.scrollTo(0, 0);
       setError("");
       setData("Your question has been posted successfully!!");
       handleClick();
     } catch (error) {
+      setLoading(false);
       setError(error.response.data.msg);
       handleClick();
     }
@@ -133,7 +138,11 @@ function AskQuestion() {
             type="submit"
             className="btn bg-primary w-full text-lg text-white px-4 py-3 rounded-lg hover:bg-secondary transition-all duration-200"
           >
-            Post your Question
+            {loading ? (
+              <ClipLoader color="#ffffff" size={20} />
+            ) : (
+              "Post your Question"
+            )}
           </button>
         </form>
       </div>

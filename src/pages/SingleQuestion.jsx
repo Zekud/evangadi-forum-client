@@ -8,6 +8,7 @@ import Answers from "./Answers";
 import { AuthContext } from "../ContextApi/AuthContext";
 import { Snackbar } from "../ContextApi/SnackBarContext";
 import { useNavigate } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 function SingleQuestion() {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
@@ -16,6 +17,7 @@ function SingleQuestion() {
   const [answers, setAnswers] = useState([]);
   const [answer, setAnswer] = useState("");
   const [question, setQuestion] = useState({});
+  const [loading, setLoading] = useState(false);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -60,6 +62,7 @@ function SingleQuestion() {
     if (!answer) {
       return;
     }
+    setLoading(true);
     try {
       const response = await axiosConfig.post(
         "/answers/postAnswer",
@@ -77,10 +80,12 @@ function SingleQuestion() {
       setAnswers(response.data.answers);
       setAnswer("");
       window.scrollTo(0, 0);
+      setLoading(false);
       setError("");
       setData("Your answer has been posted successfully!!");
       handleClick();
     } catch (error) {
+      setLoading(false);
       setError(error.response.data.msg);
       handleClick();
     }
@@ -133,7 +138,11 @@ function SingleQuestion() {
               type="submit"
               className="btn bg-primary w-full text-lg text-white px-4 py-3 rounded-lg hover:bg-secondary transition-all duration-200"
             >
-              Post your answer
+              {loading ? (
+                <ClipLoader color="#ffffff" size={20} />
+              ) : (
+                "Post your answer"
+              )}
             </button>
           </form>
         </div>

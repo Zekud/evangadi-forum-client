@@ -7,7 +7,6 @@ function AuthContextProvider({ children }) {
   const Authorization = localStorage.getItem("token");
   const [user, setUser] = useState({});
   async function checkUser() {
-    setUser(null);
     if (!Authorization) return navigate("/login");
 
     try {
