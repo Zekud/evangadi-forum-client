@@ -9,7 +9,7 @@ function Answers({ answers }) {
           {answers.map((answer, index) => (
             <div key={index} className="bg-white border-b-2 w-full ">
               <div className="flex gap-4 w-full px-4 py-2 items-center">
-                <div className="flex flex-col items-center gap-2">
+                <div className="flex flex-col items-center gap-2 w-[100px] min-w-0">
                   <div className="w-14 h-14 rounded-full overflow-hidden">
                     <img
                       src={profile}
@@ -17,8 +17,10 @@ function Answers({ answers }) {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div>
-                    <h2 className="text-xl font-medium">{answer.userName}</h2>
+                  <div className="w-[110px] max-w-[110px] text-center break-all">
+                    <h2 className="text-xl font-medium text-center text-gray-700">
+                      {answer.userName}
+                    </h2>
                   </div>
                 </div>
                 <span>
