@@ -8,7 +8,7 @@ import { AuthContext } from "./ContextApi/AuthContext";
 function ProtectedRoute({ children }) {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-  return user ? children : navigate("/login");
+  return user.userName ? children : navigate("/login");
 }
 function App() {
   return (

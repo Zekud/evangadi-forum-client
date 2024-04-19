@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../ContextApi/AuthContext";
 import NavBar from "../components/NavBar";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axiosConfig from "../Config/axiosConfig";
 import QuestionCard from "../components/QuestionCard";
 import Footer from "../components/Footer";
@@ -14,6 +14,7 @@ function Home() {
   const [error, setError] = useState("");
   const location = useLocation();
   const searchRef = useRef(null);
+  const navigate = useNavigate();
   function handleSearch() {
     setSearch(searchRef.current.value);
     if (searchRef.current.value.trim() == "") {
@@ -72,7 +73,8 @@ function Home() {
           </div>
           <div>
             <p className="text-xl">
-              Welcome: <b> {user.userName ? user.userName : "User"}</b>
+              Welcome:{" "}
+              <b> {user.userName ? user.userName : navigate("/login")}</b>
             </p>
           </div>
         </div>
