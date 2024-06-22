@@ -1,9 +1,10 @@
 import React, { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axiosConfig from "../Config/axiosConfig";
 
 export const AuthContext = createContext();
 function AuthContextProvider({ children }) {
+  const location = useLocation();
   const navigate = useNavigate();
   const Authorization = localStorage.getItem("token");
   const [user, setUser] = useState({});
