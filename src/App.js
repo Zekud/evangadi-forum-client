@@ -1,4 +1,4 @@
-import React, { useEffect, createContext, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -16,7 +16,7 @@ function ProtectedRoute({ children }) {
       console.log("User not found");
       return navigate("/login");
     }
-  }, [user, navigate]);
+  }, [user, navigate, parsedUser?.userName]);
 
   //return user.userName ? children : null;
   return children;

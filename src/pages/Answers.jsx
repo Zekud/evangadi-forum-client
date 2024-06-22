@@ -1,5 +1,4 @@
 import React from "react";
-import axiosConfig from "../Config/axiosConfig";
 import profile from "../assets/profile.svg";
 function Answers({ answers }) {
   return (
