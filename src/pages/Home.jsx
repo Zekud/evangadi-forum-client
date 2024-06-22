@@ -89,9 +89,9 @@ function Home() {
           {filteredQuestions.map((question) => (
             <QuestionCard
               key={question.id}
-              questionId={question.questionId}
+              questionId={question.questionid}
               title={question.title}
-              userName={question.userName}
+              userName={question.username}
             />
           ))}
         </div>

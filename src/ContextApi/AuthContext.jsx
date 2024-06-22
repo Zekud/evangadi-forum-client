@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosConfig from "../Config/axiosConfig";
+
 export const AuthContext = createContext();
 function AuthContextProvider({ children }) {
   const navigate = useNavigate();
@@ -16,15 +17,17 @@ function AuthContextProvider({ children }) {
         },
       });
       setUser(data);
+      delete data.userId;
+      localStorage.setItem("user", JSON.stringify(data));
     } catch (error) {
-      //console.log(error.response.data.msg);
+      console.log(error);
       navigate("/login");
     }
   }
 
   useEffect(() => {
     checkUser();
-  }, [Authorization]);
+  }, [Authorization, navigate]);
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       {children}

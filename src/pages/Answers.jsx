@@ -19,7 +19,7 @@ function Answers({ answers }) {
                   </div>
                   <div className="w-[110px] max-w-[110px] text-center break-all">
                     <h2 className="text-xl font-medium text-center text-gray-700">
-                      {answer.userName}
+                      {answer.username}
                     </h2>
                   </div>
                 </div>

@@ -8,7 +8,18 @@ import { AuthContext } from "./ContextApi/AuthContext";
 function ProtectedRoute({ children }) {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-  return user.userName ? children : navigate("/login");
+  const storedUser = localStorage.getItem("user");
+  const parsedUser = storedUser ? JSON.parse(storedUser) : null;
+  //return user.userName ? children : navigate("/login");
+  useEffect(() => {
+    if (!user || !parsedUser?.userName) {
+      console.log("User not found");
+      return navigate("/login");
+    }
+  }, [user, navigate]);
+
+  //return user.userName ? children : null;
+  return children;
 }
 function App() {
   return (
@@ -17,9 +28,9 @@ function App() {
       <Route
         path="/"
         element={
-          <ProtectedRoute>
-            <Home />
-          </ProtectedRoute>
+          // <ProtectedRoute>
+          <Home />
+          // </ProtectedRoute>
         }
       />
       <Route
