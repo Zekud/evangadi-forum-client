@@ -27,7 +27,7 @@ function AuthContextProvider({ children }) {
 
   useEffect(() => {
     checkUser();
-  }, [Authorization, navigate]);
+  }, [Authorization, navigate, location.pathname]);
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       {children}
