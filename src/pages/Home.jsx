@@ -41,7 +41,7 @@ function Home() {
         setQuestions(response?.data?.questions);
         setFilteredQuestions(response?.data?.questions);
       } catch (error) {
-        console.log(error);
+        console.log(error.response?.data?.msg);
         setError(error.response?.data?.msg);
       }
     }
