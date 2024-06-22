@@ -18,8 +18,8 @@ function AuthContextProvider({ children }) {
         },
       });
       setUser(data);
-      delete data.userId;
-      localStorage.setItem("user", JSON.stringify(data));
+      const toStore = { ...data, userId: null };
+      localStorage.setItem("user", JSON.stringify(toStore));
     } catch (error) {
       console.log(error);
       navigate("/login");
@@ -28,7 +28,7 @@ function AuthContextProvider({ children }) {
 
   useEffect(() => {
     checkUser();
-  }, [Authorization, navigate, location.pathname]);
+  }, [Authorization, navigate]);
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       {children}
